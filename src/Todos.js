@@ -5,7 +5,7 @@ function Todos({ todos, todo, removeItem, editItem, completedItem }) {
 
 
     return (
-        <div className="App">
+        <div className="todo">
             {todos.map((item, index) => {
                 return (
                     <li key={index}>

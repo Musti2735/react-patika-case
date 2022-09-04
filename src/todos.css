@@ -5,3 +5,8 @@
 .unchecked{
     text-decoration: none;
 }
+
+.todo{
+    display: flex;
+    flex-direction: column-reverse;
+}

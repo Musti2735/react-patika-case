@@ -69,7 +69,7 @@ function Main({ alert, showAlert, user }) {
     else {
       const newTodo = { content: content, isCompleted: false, itemId: new Date().getTime().toString() }
       setTodo(newTodo)
-      showAlert(true, "New Item Added", "")
+      showAlert(true, "New Item Added", "success")
       setContent('')
       setTodos([...todos, newTodo])
       dataSaveGet(newTodo)
@@ -106,6 +106,8 @@ function Main({ alert, showAlert, user }) {
     setEditId(id)
 
   }
+  let compledetTodos = todos.filter(todo=>todo.isCompleted===true)
+
   const completedItem = (id) => {
     const complatedItem = todos.find((item) => item.id === id)
     complatedItem.isCompleted = (!(complatedItem.isCompleted))
@@ -174,7 +176,8 @@ function Main({ alert, showAlert, user }) {
         <h3>Todos..</h3>
         <p>Wellcome {user}</p>
         <p>Toplam todo : {todos.length}</p>
-        <p>Tamamlanan todo : </p>
+        <p>Tamamlanan todo : {compledetTodos.length}</p>
+        <p>Tamamlanmayan todo : {todos.length - compledetTodos.length}</p>
         <div className="form-control">
           <input
             type="text"

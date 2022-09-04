@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Main from './Main'
 import Alert from './Alert';
-import { Form, Button, Input, Label, Col, Container, Row } from 'reactstrap'
+import { Col, Container } from 'reactstrap'
 
 
 function App() {
@@ -20,10 +20,12 @@ function App() {
             setIsUser(true)
             console.log(user)
             localStorage.setItem('user', JSON.stringify(user));
+
         }
     }
     useEffect(() => {
-        const localData = JSON.parse(localStorage.getItem('user'))
+        const localData = JSON.parse(localStorage.getItem('user'));
+        
         setUser(localData)
     }, []);
 
@@ -35,11 +37,9 @@ function App() {
         return <div><Main user={user} alert={alert} showAlert={showAlert} /></div>
     }
     return (
+
         <Container className=" container bg-light border"
             fluid="sm">
-
-
-
             <Col>
                 <div className='header py-5 text-center'>
                     <h2>To Do App</h2>
@@ -68,7 +68,6 @@ function App() {
                 <div>
                     <Alert alert={alert} removeAlert={showAlert} /></div>
             </Col>
-
         </Container>
 
     )
