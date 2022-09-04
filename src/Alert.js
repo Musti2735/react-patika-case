@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import {Row} from 'reactstrap'
 function Alert({ alert, todos, removeAlert }) {
 
   useEffect(() => {
@@ -9,9 +10,10 @@ function Alert({ alert, todos, removeAlert }) {
   })
 
   return (
-    <div className="Alert">
+
+    <div className={`alert alert-${alert.type}`}  role="alert">
       <p>{alert.msg}</p>
-    </div>
+  </div>
   );
 
 }

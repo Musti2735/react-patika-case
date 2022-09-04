@@ -2,19 +2,20 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Main from './Main'
 import Alert from './Alert';
-
+import { Form, Button, Input, Label, Col, Container, Row } from 'reactstrap'
 
 
 function App() {
     const [user, setUser] = useState("")
     const [isUser, setIsUser] = useState(false)
-    const [alert, setAlert] = useState({ show: false, msg: "", type: '' });
+    const [alert, setAlert] = useState({ show: true, msg: "", type: '' });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (user.trim().length < 3) {
-            showAlert(true, 'Please enter your name', 'success')
+        if (user.trim().length < 4) {
+            showAlert(true, ' Must be at least 4 characters long.', 'danger')
             setUser("")
+
         } else {
             setIsUser(true)
             console.log(user)
@@ -30,28 +31,46 @@ function App() {
         setAlert({ show, msg, type })
     }
 
-    if (isUser && user.trim().length > 3) {
+    if (isUser && user.trim().length >= 4) {
         return <div><Main user={user} alert={alert} showAlert={showAlert} /></div>
     }
     return (
-        <section className="section-center">
-            <div className="login-wrapper">
-                <Alert alert={alert} showAlert={showAlert} />
-                <h1>Please Log In</h1>
-                <form onSubmit={handleSubmit} >
-                    <label>
-                        <p>Username</p>
+        <Container className=" container bg-light border"
+            fluid="sm">
+
+
+
+            <Col>
+                <div className='header py-5 text-center'>
+                    <h2>To Do App</h2>
+                    <p className='lead'>You can create own todo list</p>
+                </div>
+            </Col>
+            <Col>
+
+                <form onSubmit={handleSubmit} className='py-3' >
+                    <div className="lead row-cols-lg-auto align-items-center">
+                        <label className='form-label' size="lg" htmlFor="name">
+                            Please Enter Your Name :
+                        </label>
                         <input
+                            className='form-control'
+                            id="name"
+                            type="text"
                             value={user}
                             onChange={(e) => setUser(e.target.value)}
-                            type="text" />
-                    </label>
-                    <div>
-                        <button type="submit">Submit</button>
+                        />
+                        <button className='btn btn-dark' type='submit'>
+                            Login
+                        </button>
                     </div>
                 </form>
-            </div>
-        </section>
+                <div>
+                    <Alert alert={alert} removeAlert={showAlert} /></div>
+            </Col>
+
+        </Container>
+
     )
 }
 

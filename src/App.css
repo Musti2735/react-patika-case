@@ -1,0 +1,23 @@
+.container{
+    display:flex;
+    min-width: 250px;
+    height: auto;
+    border: 0.5px solid black;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 30px;
+
+}
+
+form div{
+    padding: 5px;
+    
+}
+
+.form-control{
+    max-width: 250px;
+}
+
+.btn{
+    margin-top: 0.6rem
+}

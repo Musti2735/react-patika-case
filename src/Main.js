@@ -2,6 +2,7 @@ import Alert from './Alert';
 import { useEffect, useState } from 'react';
 import './App.css';
 import Todos from './Todos';
+import {Button, Container, Spinner} from 'reactstrap'
 
 const url = 'https://630f26d6498924524a86e8a4.mockapi.io/todos'
 
@@ -29,10 +30,18 @@ function Main({ alert, showAlert, user }) {
   }, []);
 
   if (loading) {
-    return (<section className="section loading">
-      <h2>Loading..</h2>
-    </section>
-    )
+    return (
+      <Spinner
+        className="m-auto"
+        color="primary"
+        style={{
+          height: '4rem',
+          width: '4rem'
+        }}
+      >
+        Loading...
+      </Spinner>
+      )
   };
 
   const handleSubmit = (e) => {
@@ -158,9 +167,9 @@ function Main({ alert, showAlert, user }) {
   }
 
 
-  return (
-    <section className="section-center">
-      <form className="gorcery-form" onSubmit={handleSubmit} >
+  return (<>
+    <section className="container bg-light border">
+      <form className="header py-5 text-center" onSubmit={handleSubmit} >
         <Alert alert={alert} removeAlert={showAlert} todos={todos} />
         <h3>Todos..</h3>
         <p>Wellcome {user}</p>
@@ -179,8 +188,11 @@ function Main({ alert, showAlert, user }) {
           </button>
         </div>
       </form>
-      <Todos todos={todos} todo={todo} removeItem={removeItem} editItem={editItem} completedItem={completedItem} />
+
     </section>
+    <section className="container">    <Todos todos={todos} todo={todo} removeItem={removeItem} editItem={editItem} completedItem={completedItem} /></section>
+
+    </>
   )
 }
 
