@@ -1,8 +1,10 @@
 import Alert from './Alert';
 import { useEffect, useState } from 'react';
 import './App.css';
+import './main.css';
 import Todos from './Todos';
-import {Button, Container, Spinner} from 'reactstrap'
+import { Button, Col } from 'reactstrap'
+
 
 const url = 'https://630f26d6498924524a86e8a4.mockapi.io/todos'
 
@@ -31,17 +33,10 @@ function Main({ alert, showAlert, user }) {
 
   if (loading) {
     return (
-      <Spinner
-        className="m-auto"
-        color="primary"
-        style={{
-          height: '4rem',
-          width: '4rem'
-        }}
-      >
-        Loading...
-      </Spinner>
-      )
+      <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border" role="status"> </div>
+      </div>
+    )
   };
 
   const handleSubmit = (e) => {
@@ -106,7 +101,7 @@ function Main({ alert, showAlert, user }) {
     setEditId(id)
 
   }
-  let compledetTodos = todos.filter(todo=>todo.isCompleted===true)
+  let compledetTodos = todos.filter(todo => todo.isCompleted === true)
 
   const completedItem = (id) => {
     const complatedItem = todos.find((item) => item.id === id)
@@ -170,32 +165,57 @@ function Main({ alert, showAlert, user }) {
 
 
   return (<>
-    <section className="container bg-light border">
-      <form className="header py-5 text-center" onSubmit={handleSubmit} >
-        <Alert alert={alert} removeAlert={showAlert} todos={todos} />
-        <h3>Todos..</h3>
-        <p>Wellcome {user}</p>
-        <p>Toplam todo : {todos.length}</p>
-        <p>Tamamlanan todo : {compledetTodos.length}</p>
-        <p>Tamamlanmayan todo : {todos.length - compledetTodos.length}</p>
-        <div className="form-control">
-          <input
-            type="text"
+    <section className="container bg-light border lead">
+      <Col>
+        <div className='info'> 
+        <h4><span>Welcome {user}</span></h4>
+        <table class="table">
+  <thead>
+    <tr >
+      <th className='lead' scope="col">Total</th>
+      <th className='lead' scope="col">Completed</th>
+      <th className='lead' scope="col">Uncompleted </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className=''>
+      <td>{todos.length}</td>
+      <td>{compledetTodos.length}</td>
+      <td>{todos.length - compledetTodos.length}</td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+        </div>
+      </Col>
+      <Col>
+      <form className="todoForm" onSubmit={handleSubmit} >
+        <div className="">
+        <textarea type="textarea"
             className="todo"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder='Todo..'
-          />
-          <button type="submit" className="submit-btn">
+            rows='5'
+            placeholder='Todo..' aria-label="With textarea"></textarea>
+      
+          <button type="submit" className="btn btn-dark m-2">
             {isEditing ? "edit" : "submit"}
           </button>
+          <Alert alert={alert} removeAlert={showAlert} todos={todos} />
         </div>
       </form>
 
-    </section>
-    <section className="container">    <Todos todos={todos} todo={todo} removeItem={removeItem} editItem={editItem} completedItem={completedItem} /></section>
+ 
+      </Col>
+      </section>
+     
+    <section className="container bg-light border">   
+     <Todos todos={todos} todo={todo} removeItem={removeItem} editItem={editItem} completedItem={completedItem} />
+     </section>
 
-    </>
+  </>
   )
 }
 

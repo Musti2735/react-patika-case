@@ -1,0 +1,32 @@
+
+
+.containerTodo{
+color: aliceblue;
+}
+
+.todoForm{
+   text-align: center;
+}
+
+.todo{
+    width: 350px;
+    min-width: 200px;
+    border:0.1px solid rgb(229, 223, 223);
+    margin: 20px;
+}
+
+.info{
+    margin:20px;
+    text-align: center;
+}
+
+.info h2,p{
+    padding: -4px;
+}
+
+
+
+.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}

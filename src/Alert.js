@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import {Row} from 'reactstrap'
+
 function Alert({ alert, todos, removeAlert }) {
 
   useEffect(() => {

@@ -10,3 +10,12 @@
     display: flex;
     flex-direction: column-reverse;
 }
+
+.btns{
+   margin: 8px;
+   font-size: large;
+}
+
+.btns :hover{
+     opacity: 0.5;
+}
