@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 function Login({ setUser }) {
-
-
   return (
     <div className="login-wrapper">
       <h1>Please Log In</h1>

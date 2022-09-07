@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 import Main from './Main'
 import Alert from './Alert';
-import { Col, Container } from 'reactstrap'
+import './main.css'
 
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (user.trim().length < 4) {
-            showAlert(true, ' Must be at least 4 characters long.', 'danger')
+            showAlert(true, ' Must be at least 4 characters long.', 'dark')
             setUser("")
 
         } else {
@@ -25,7 +24,7 @@ function App() {
     }
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem('user'));
-        
+
         setUser(localData)
     }, []);
 
@@ -37,38 +36,40 @@ function App() {
         return <div><Main user={user} alert={alert} showAlert={showAlert} /></div>
     }
     return (
-
-        <Container className=" container bg-light border"
-            fluid="sm">
-            <Col>
-                <div className='header py-5 text-center'>
-                    <h2>To Do App</h2>
-                    <p className='lead'>You can create own todo list</p>
-                </div>
-            </Col>
-            <Col>
-
-                <form onSubmit={handleSubmit} className='py-3' >
-                    <div className="lead row-cols-lg-auto align-items-center">
-                        <label className='form-label' size="lg" htmlFor="name">
-                            Please Enter Your Name :
-                        </label>
-                        <input
-                            className='form-control'
-                            id="name"
-                            type="text"
-                            value={user}
-                            onChange={(e) => setUser(e.target.value)}
-                        />
-                        <button className='btn btn-dark' type='submit'>
-                            Login
-                        </button>
+        <section className="container bg-light border lead">
+            <div className='row'>
+                <div className='col-md-6 layer'>
+                    <div className='header py-5 text-center'>
+                        <h2>To Do App</h2>
+                        <p className='lead'>You can create own todo list</p>
                     </div>
-                </form>
-                <div>
-                    <Alert alert={alert} removeAlert={showAlert} /></div>
-            </Col>
-        </Container>
+                </div>
+
+                <div className='col-md-6 layer'>
+                    <form onSubmit={handleSubmit} className='todoForm' >
+                        <div>
+                            <label className='form-label' size="lg" htmlFor="name">
+                                Please Enter Your Name :
+                            </label>
+                            <input
+                                className='form-control'
+                                id="name"
+                                type="text"
+                                value={user}
+                                onChange={(e) => setUser(e.target.value)}
+                            />
+                            <button className='btn btn-dark mt-3 mb-3' type='submit'>
+                                Login
+                            </button>
+                            <div>
+                            <Alert alert={alert} removeAlert={showAlert} />
+                            </div>
+                        
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
     )
 }

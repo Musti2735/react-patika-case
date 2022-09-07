@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function Alert({ alert, todos, removeAlert }) {
+function Alert({ alert, removeAlert }) {
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
@@ -10,7 +10,6 @@ function Alert({ alert, todos, removeAlert }) {
   })
 
   return (
-
     <div className={`alert alert-${alert.type}`}  role="alert">
       <p>{alert.msg}</p>
   </div>

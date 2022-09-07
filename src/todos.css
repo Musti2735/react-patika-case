@@ -1,5 +1,6 @@
 .checked{
     text-decoration: line-through;   
+    color:grey
 }
 
 .unchecked{
@@ -14,8 +15,32 @@
 .btns{
    margin: 8px;
    font-size: large;
-}
+   cursor:pointer;
+   }
 
 .btns :hover{
      opacity: 0.5;
+
 }
+.lists {
+ display:flex;
+ justify-content: space-evenly;
+ margin-bottom: 15px;
+}
+
+.listsBtn{
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.listsBtn:hover{
+    opacity: 0.5;
+    text-decoration:underline;
+}
+
+.listsBtnClicked{
+    text-decoration:underline;
+    font-size: x-large;
+    cursor:pointer;
+}
+
