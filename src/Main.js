@@ -156,17 +156,18 @@ function Main({ alert, showAlert, user }) {
       <div className='row'>
         <div className='col-md-6 layer'>
           <div className='info'>
+          <h3><span>TO DO LIST</span></h3>
             <h4><span>Welcome {user}</span></h4>
             <table class="table">
               <thead>
                 <tr >
-                  <th className='lead' scope="col">Total</th>
+                  <th className='lead' scope="col">All</th>
                   <th className='lead' scope="col">Completed</th>
                   <th className='lead' scope="col">Uncompleted </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className=''>
+                <tr>
                   <td>{todos.length}</td>
                   <td>{compledetTodos.length}</td>
                   <td>{todos.length - compledetTodos.length}</td>

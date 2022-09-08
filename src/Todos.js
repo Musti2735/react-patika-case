@@ -25,10 +25,10 @@ function Todos({ todos, removeItem, editItem, completedItem }) {
                     <th className='col-2' scope="col"></th>
                 </tr>
             </thead>
-            <tbody className='todoList'>
+            <tbody className='todo'>
                 {curruentTodos.map((item, index) => {
                     return (
-                        <tr  key={index}>
+                        <tr key={index}>
                             <td>{index + 1}</td>
                             <td className={item.isCompleted == true ? 'checked' : 'unchecked'} > {item.content} </td>
                             <td>

@@ -7,9 +7,6 @@
     text-decoration: none;
 }
 
-.todoList{
-
-}
 
 .btns{
    margin: 8px;
@@ -39,7 +36,6 @@
 
 .listsBtnClicked{
     text-decoration:underline;
-    font-size: x-large;
     cursor:pointer;
 }
 
