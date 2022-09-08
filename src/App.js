@@ -11,8 +11,8 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (user.trim().length < 4) {
-            showAlert(true, ' Must be at least 4 characters long.', 'dark')
+        if (user.trim().length < 3) {
+            showAlert(true, ' Must be at least 3 characters long.', 'dark')
             setUser("")
 
         } else {
