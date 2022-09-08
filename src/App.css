@@ -26,4 +26,7 @@ form div{
     margin-top: 0.6rem
 }
 
-
+.dark-mode {
+    background-color: black;
+    color: white;
+  }

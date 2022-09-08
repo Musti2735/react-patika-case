@@ -2,7 +2,6 @@ import Alert from './Alert';
 import { useEffect, useState } from 'react';
 import './main.css';
 import Todos from './Todos';
-import { Col } from 'reactstrap'
 
 const url = 'https://630f26d6498924524a86e8a4.mockapi.io/todos'
 
@@ -28,8 +27,8 @@ function Main({ alert, showAlert, user }) {
 
   if (loading) {
     return (
-      <div class="d-flex justify-content-center mt-5">
-        <div class="spinner-border" role="status"> </div>
+      <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border" role="status"> </div>
       </div>
     )
   };
@@ -190,9 +189,9 @@ function Main({ alert, showAlert, user }) {
                 {isEditing ? "Edit" : "Add"}
               </button>
               <div className='alertDiv'>
-              <Alert alert={alert} removeAlert={showAlert} todos={todos} />
+                <Alert alert={alert} removeAlert={showAlert} todos={todos} />
               </div>
-            
+
             </div>
           </form>
         </div>

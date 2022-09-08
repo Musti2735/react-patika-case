@@ -1,51 +1,5 @@
-.container2{
-display: block;
-margin-bottom: 50px;
-padding-bottom: 100px;
 
-}
-.row{
-    width: 100%;
- 
-}
-
-.todoForm{
-   text-align: center;
-}
-
-.todo{
-    width: 350px;
-    min-width: 200px;
-    border:0.1px solid rgb(229, 223, 223);
-    margin: 20px;
-}
-
-.info{
-    margin:20px;
-    text-align: center;
-}
-
-.info h2,p{
-    padding: -4px;
-}
-
-.lead {
-    font-size: 1rem;
-    font-weight: 300;
-}
-.btn{
-    width: 100px;;
-}
-
-.alert{
-    font-size: small;
-}
-
-.alertDiv{
-    justify-content: center;
-}
-
-.container{
+.container {
     min-width: 250px;
     height: auto;
     border: 0.5px solid black;
@@ -53,23 +7,69 @@ padding-bottom: 100px;
     padding: 40px;
     margin-top: 30px;
 }
-.layer{
+
+.layer {
     display: flex;
     justify-content: center;
-    
-    }
-form div{
-    padding: 5px;
-    
+
 }
 
-.form-control{
+form div {
+    padding: 5px;
+
+}
+
+.form-control {
     min-width: 250px;
     max-width: 250px;
 }
 
-.btn{
-    margin-top: 0.6rem
+.btn {
+    margin-top: 0.6rem;
+    width: 100px;
 }
 
+.container2 {
+    display: block;
+    margin-bottom: 50px;
+    padding-bottom: 100px;
 
+}
+
+.row {
+    width: 100%;
+    margin: 0;
+
+}
+.todoForm {
+    text-align: center;
+}
+
+.todo {
+    width: 350px;
+    min-width: 200px;
+    border: 0.1px solid rgb(229, 223, 223);
+    margin: 20px;
+}
+
+.info {
+    margin: 20px;
+    text-align: center;
+}
+
+.info h2, p {
+    padding: -4px;
+}
+
+.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.alert {
+    font-size: small;
+}
+
+.alertDiv {
+    justify-content: center;
+}
