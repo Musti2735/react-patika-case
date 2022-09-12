@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import Main from './Main'
 import Alert from './Alert';
 import './main.css'
+import DarkMode from './DarkMode';
 
 
 function App() {
     const [user, setUser] = useState("")
     const [isUser, setIsUser] = useState(false)
     const [alert, setAlert] = useState({ show: true, msg: "", type: '' });
+    const [mode, setMode] = useState('light')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,19 +26,28 @@ function App() {
     }
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem('user'));
-
+        const localMode = JSON.parse(localStorage.getItem('mode'));
         setUser(localData)
+        setMode(localMode)
     }, []);
 
     const showAlert = (show = false, msg = "", type = '') => {
         setAlert({ show, msg, type })
     }
 
-    if (isUser && user.trim().length >= 4) {
-        return <div><Main user={user} alert={alert} showAlert={showAlert} /></div>
+    const handleMode = () => {
+        const newMode = mode === 'light' ? 'dark' : 'light'
+        setMode(newMode)
+        localStorage.setItem('mode', JSON.stringify(newMode));
     }
+
+    if (isUser && user.trim().length >= 3) {
+        return <div><Main user={user} alert={alert} showAlert={showAlert} mode={mode} handleMode={handleMode} /></div>
+    }
+
     return (
-        <section className="container bg-light border lead">
+        <section className={`container2 ${mode} border lead`}>
+            <DarkMode mode={mode} handleMode={handleMode} />
             <div className='row'>
                 <div className='col-md-6 layer'>
                     <div className='header py-5 text-center'>
@@ -58,13 +69,13 @@ function App() {
                                 value={user}
                                 onChange={(e) => setUser(e.target.value)}
                             />
-                            <button className='btn btn-dark mt-3 mb-3' type='submit'>
+                            <button className={`btn btn-${mode === 'dark' ? 'light' : 'dark'} mb-3`} type='submit'>
                                 Login
                             </button>
                             <div>
-                            <Alert alert={alert} removeAlert={showAlert} />
+                                <Alert alert={alert} removeAlert={showAlert} />
                             </div>
-                        
+
                         </div>
                     </form>
                 </div>

@@ -2,10 +2,11 @@ import Alert from './Alert';
 import { useEffect, useState } from 'react';
 import './main.css';
 import Todos from './Todos';
+import DarkMode from './DarkMode';
 
 const url = 'https://630f26d6498924524a86e8a4.mockapi.io/todos'
 
-function Main({ alert, showAlert, user }) {
+function Main({ alert, showAlert, user, mode, handleMode }) {
   const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState({ content: '', isCompleted: false, itemId: null })
@@ -152,13 +153,14 @@ function Main({ alert, showAlert, user }) {
   }
 
   return (<>
-    <section className="container bg-light border lead">
+    <section className={`container2 ${mode} border lead`}>
+      <DarkMode mode={mode} handleMode={handleMode} />
       <div className='row'>
         <div className='col-md-6 layer'>
           <div className='info'>
-          <h3><span>TO DO LIST</span></h3>
+            <h3><span>TO DO LIST</span></h3>
             <h4><span>Welcome {user}</span></h4>
-            <table class="table">
+            <table className={`table table-${mode}`}>
               <thead>
                 <tr >
                   <th className='lead' scope="col">All</th>
@@ -186,9 +188,12 @@ function Main({ alert, showAlert, user }) {
                 onChange={(e) => setContent(e.target.value)}
                 rows='5'
                 placeholder='To do ...' aria-label="With textarea"></textarea>
-              <button type="submit" className="btn btn-dark m-3">
-                {isEditing ? "Edit" : "Add"}
-              </button>
+              <div>
+                <button type="submit" className={`btn btn-${mode === 'dark' ? 'light' : 'dark'} mb-3`}>
+                  {isEditing ? "Edit" : "Add"}
+                </button>
+              </div>
+
               <div className='alertDiv'>
                 <Alert alert={alert} removeAlert={showAlert} todos={todos} />
               </div>
@@ -197,12 +202,13 @@ function Main({ alert, showAlert, user }) {
           </form>
         </div>
       </div>
+      {todos.length > 0 && (
+
+        <Todos todos={todos} todo={todo} removeItem={removeItem} editItem={editItem} completedItem={completedItem} mode={mode} />
+
+      )}
     </section>
-    {todos.length > 0 && (
-      <section className="container container2 bg-light border">
-        <Todos todos={todos} todo={todo} removeItem={removeItem} editItem={editItem} completedItem={completedItem} />
-      </section>
-    )}
+
   </>
   )
 }

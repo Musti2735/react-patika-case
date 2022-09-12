@@ -2,7 +2,7 @@ import './todos.css'
 import { FaCheck, FaCircle, FaEdit, FaTrash } from 'react-icons/fa'
 import { useState } from 'react'
 
-function Todos({ todos, removeItem, editItem, completedItem }) {
+function Todos({ todos, removeItem, editItem, completedItem, mode }) {
     const [status, setStatus] = useState("all")
     let completedTodos = todos.filter((item) => item.isCompleted === true)
     let unCompletedTodos = todos.filter((item) => item.isCompleted === false)
@@ -17,33 +17,31 @@ function Todos({ todos, removeItem, editItem, completedItem }) {
         </div>
 
 
-        <table className="table table-md">
-            <thead>
-                <tr>
-                    <th className='col-1' scope="col">#</th>
-                    <th className='col-9' scope="col">To Do's</th>
-                    <th className='col-2' scope="col"></th>
-                </tr>
-            </thead>
-            <tbody className='todo'>
+        <div className={`container ${mode}`}>
+            <div className='row'>
+                <h5 className='col-1' scope="col">#</h5>
+                <h5 className='col-9' scope="col">To Do's</h5>
+                <h5 className='col-2' scope="col"></h5>
+            </div>
+            <div className='todos'>
                 {curruentTodos.map((item, index) => {
                     return (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td className={item.isCompleted == true ? 'checked' : 'unchecked'} > {item.content} </td>
-                            <td>
+                        <li key={index} className='row'>
+                            <div className='col-1'>{index + 1}</div>
+                            <div className={item.isCompleted == true ? 'checked col-9' : 'unchecked col-9'} > {item.content} </div>
+                            <div className='col-2'>
                                 <div className="btn-group" role="group" aria-label="Basic example">
                                     <FaTrash className="btns" onClick={() => removeItem(item.id)} />
                                     <FaEdit className="btns" onClick={() => editItem(item.id)} />
                                     {item.isCompleted == true ? <FaCircle className="btns" onClick={() => completedItem(item.id)} /> : <FaCheck className="btns" onClick={() => completedItem(item.id)} />}
 
                                 </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </li>
                     )
                 })}
-            </tbody>
-        </table>
+            </div>
+        </div>
     </>
     );
 
