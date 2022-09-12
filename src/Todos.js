@@ -11,14 +11,14 @@ function Todos({ todos, removeItem, editItem, completedItem, mode }) {
     return (<>
 
         <div className='lists' >
-            <h5 onClick={() => setStatus('all')} className={status === 'all' ? 'listsBtnClicked' : 'listsBtn'}>All To Do's</h5>
-            <h5 onClick={() => setStatus('completed')} className={status === 'completed' ? 'listsBtnClicked' : 'listsBtn'}>Completed</h5>
-            <h5 onClick={() => setStatus('unCompleted')} className={status === 'unCompleted' ? 'listsBtnClicked' : 'listsBtn'}>Uncompleted </h5>
+            <h6 onClick={() => setStatus('all')} className={status === 'all' ? 'listsBtnClicked' : 'listsBtn'}>All To Do's</h6>
+            <h6 onClick={() => setStatus('completed')} className={status === 'completed' ? 'listsBtnClicked' : 'listsBtn'}>Completed</h6>
+            <h6 onClick={() => setStatus('unCompleted')} className={status === 'unCompleted' ? 'listsBtnClicked' : 'listsBtn'}>Uncompleted </h6>
         </div>
 
 
-        <div className={`container ${mode}`}>
-            <div className='row'>
+        <div className={`container container-lg ${mode}`}>
+            <div className='row todo'>
                 <h5 className='col-1' scope="col">#</h5>
                 <h5 className='col-9' scope="col">To Do's</h5>
                 <h5 className='col-2' scope="col"></h5>
@@ -26,7 +26,7 @@ function Todos({ todos, removeItem, editItem, completedItem, mode }) {
             <div className='todos'>
                 {curruentTodos.map((item, index) => {
                     return (
-                        <li key={index} className='row'>
+                        <li key={index} className='row todo'>
                             <div className='col-1'>{index + 1}</div>
                             <div className={item.isCompleted == true ? 'checked col-9' : 'unchecked col-9'} > {item.content} </div>
                             <div className='col-2'>

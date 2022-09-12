@@ -6,7 +6,7 @@ import DarkMode from './DarkMode';
 
 const url = 'https://630f26d6498924524a86e8a4.mockapi.io/todos'
 
-function Main({ alert, showAlert, user, mode, handleMode }) {
+function Main({ alert, showAlert, user, mode, handleMode}) {
   const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState({ content: '', isCompleted: false, itemId: null })
@@ -19,7 +19,7 @@ function Main({ alert, showAlert, user, mode, handleMode }) {
     const response = await fetch(url);
     const newTodos = await response.json();
     setTodos(newTodos);
-    setLoading(false)
+    setLoading(false);
   }
 
   useEffect(() => {
