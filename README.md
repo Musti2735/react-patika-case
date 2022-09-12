@@ -9,16 +9,15 @@
 
 <p>User can delete, edit and complete the 'todo'. Its given an alert each process to the user. All process complishes on the API Server at same time. <a href='https://mockapi.io/projects/630f26d6498924524a86e8a5'>MockAPI link </a></p>
 
-<p>There are 5 components. İndex.js, App.js, Main.js, Todos.js and Alert.js.</p>
+<p>There are 6 components. İndex.js, App.js, Main.js, Todos.js, DarkMode.js and Alert.js.</p>
 
 <p>The app has responsive desing and it's could used on phone and other devices. </p>
 
+  <img src='https://github.com/Musti2735/react-patika-case/blob/master/two.png' width='350px'></img>
+<img src='https://github.com/Musti2735/react-patika-case/blob/master/tree.png' width='350px'></img>
+ <img src='https://github.com/Musti2735/react-patika-case/blob/master/one.png' width='350px'></img>
 
-  <img src='https://github.com/Musti2735/react-patika-case/blob/master/Ekran%20Resmi%202022-09-08%2021.00.11.png' width='350px'></img>
 
-  <img src='https://github.com/Musti2735/react-patika-case/blob/master/Ekran%20Resmi%202022-09-08%2021.00.26.png' width='350px'></img>
-
-  <img src='https://github.com/Musti2735/react-patika-case/blob/master/Ekran%20Resmi%202022-09-08%2021.02.13.png' width='350px'></img>
 
 
 
