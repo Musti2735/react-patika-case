@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import Main from './Main'
-import Alert from './Alert';
-import './main.css'
+import Main from '../pages/Main'
+import Alert from '../components/Alert';
+import '../style/main.css'
 import DarkMode from './DarkMode';
+import {ThemeContext} from '../context/ThemeContext';
 
 
 function App() {
@@ -10,6 +11,17 @@ function App() {
     const [isUser, setIsUser] = useState(false)
     const [alert, setAlert] = useState({ show: true, msg: "", type: '' });
     const [mode, setMode] = useState('light')
+
+    const handleMode = () => {
+        const newMode = mode === 'light' ? 'dark' : 'light'
+        setMode(newMode)
+        localStorage.setItem('mode', JSON.stringify(newMode));
+    }
+    const data = { mode, handleMode }
+  
+    useEffect(() => {
+        document.body.className = mode
+      }, [mode])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,19 +47,16 @@ function App() {
         setAlert({ show, msg, type })
     }
 
-    const handleMode = () => {
-        const newMode = mode === 'light' ? 'dark' : 'light'
-        setMode(newMode)
-        localStorage.setItem('mode', JSON.stringify(newMode));
-    }
+
 
     if (isUser && user.trim().length >= 3) {
-        return <div><Main user={user} alert={alert} showAlert={showAlert} mode={mode} handleMode={handleMode} /></div>
+        return  <ThemeContext.Provider value={data}><div><Main user={user} alert={alert} showAlert={showAlert} mode={mode} handleMode={handleMode} /></div></ThemeContext.Provider>
     }
 
     return (
+        <ThemeContext.Provider value={data}>
         <section className={`container2 ${mode} border lead`}>
-            <DarkMode mode={mode} handleMode={handleMode} />
+            <DarkMode />
             <div className='row'>
                 <div className='col-md-6 layer'>
                     <div className='header py-5 text-center'>
@@ -81,7 +90,7 @@ function App() {
                 </div>
             </div>
         </section>
-
+        </ThemeContext.Provider>
     )
 }
 

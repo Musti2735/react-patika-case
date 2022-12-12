@@ -1,19 +1,21 @@
-import Alert from './Alert';
-import { useEffect, useState } from 'react';
-import './main.css';
-import Todos from './Todos';
-import DarkMode from './DarkMode';
+import Alert from '../components/Alert';
+import { useEffect, useState, useContext } from 'react';
+import '../style/main.css';
+import Todos from '../components/Todos';
+import DarkMode from '../components/DarkMode';
+import { ThemeContext } from "../context/ThemeContext";
+
 
 const url = 'https://630f26d6498924524a86e8a4.mockapi.io/todos'
 
-function Main({ alert, showAlert, user, mode, handleMode}) {
+function Main({ alert, showAlert, user}) {
   const [loading, setLoading] = useState(true);
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState({ content: '', isCompleted: false, itemId: null })
   const [content, setContent] = useState("")
   const [isEditing, setIsEditing] = useState(false)
   const [editId, setEditId] = useState(null)
-
+  const {mode, handleMode} = useContext(ThemeContext)
 
   const fetchData = async () => {
     const response = await fetch(url);
@@ -154,7 +156,7 @@ function Main({ alert, showAlert, user, mode, handleMode}) {
 
   return (<>
     <section className={`container2 ${mode} border lead`}>
-      <DarkMode mode={mode} handleMode={handleMode} />
+      <DarkMode />
       <div className='row'>
         <div className='col-md-6 layer'>
           <div className='info'>

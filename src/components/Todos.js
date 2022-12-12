@@ -1,4 +1,4 @@
-import './todos.css'
+import '../style/todos.css'
 import { FaCheck, FaCircle, FaEdit, FaTrash } from 'react-icons/fa'
 import { useState } from 'react'
 
