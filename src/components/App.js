@@ -7,54 +7,53 @@ import {ThemeContext} from '../context/ThemeContext';
 
 
 function App() {
-    const [user, setUser] = useState("")
-    const [isUser, setIsUser] = useState(false)
-    const [alert, setAlert] = useState({ show: true, msg: "", type: '' });
-    const [mode, setMode] = useState('light')
+    const [user, setUser] = useState("") //Kullanıcı tanımlama
+    const [isUser, setIsUser] = useState(false) // Kullanıcı doğrulaması için tanımlama
+    const [alert, setAlert] = useState({ show: true, msg: "", type: '' }); // input için uyarı tanımlama
+    const [mode, setMode] = useState('light') // ligth-dark mode için tema tanımlama
 
     const handleMode = () => {
         const newMode = mode === 'light' ? 'dark' : 'light'
         setMode(newMode)
         localStorage.setItem('mode', JSON.stringify(newMode));
-    }
-    const data = { mode, handleMode }
+    } // dark mode için handleMode adında bir fonksiyon oluşturduk. Bu fonksiyon mode değişkeninin değerini değiştiren ve localStorage'a kaydeden bir fonksiyon.
+
+
+    const data = { mode, handleMode, user } // user değeri, mode değeri ve modu değiştiren fonksiyonu uygulamada tüm componentlerde context yapısı ile aktaracağımız için data değişkenine atadık. 
   
     useEffect(() => {
         document.body.className = mode
-      }, [mode])
+      }, [mode]) // body'nin classını mode değeri olarak atadık
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) => { //Kullanıcı girişi için buton tıklandığında çalışacak fonksiyon. 
         e.preventDefault();
-        if (user.trim().length < 3) {
+        if (user.trim().length < 3) { //Eğer kullanıcı adı uzunluğu üçten azdır.
             showAlert(true, ' Must be at least 3 characters long.', 'dark')
             setUser("")
 
-        } else {
+        } else { // değilse kullanıcıyı doğruladık ve locale kaydettik
             setIsUser(true)
-            console.log(user)
             localStorage.setItem('user', JSON.stringify(user));
 
         }
     }
     useEffect(() => {
-        const localData = JSON.parse(localStorage.getItem('user'));
+        const localData = JSON.parse(localStorage.getItem('user')); // localden user ve mode değerlerini getirdik ve atamasını yaptık.
         const localMode = JSON.parse(localStorage.getItem('mode'));
         setUser(localData)
         setMode(localMode)
     }, []);
 
     const showAlert = (show = false, msg = "", type = '') => {
-        setAlert({ show, msg, type })
+        setAlert({ show, msg, type }) //alert fonksiyonunu tanımladık
     }
 
-
-
-    if (isUser && user.trim().length >= 3) {
-        return  <ThemeContext.Provider value={data}><div><Main user={user} alert={alert} showAlert={showAlert} mode={mode} handleMode={handleMode} /></div></ThemeContext.Provider>
+    if (isUser) { // kullanıcı değeri true ise Main componentini return ettik.
+        return  <ThemeContext.Provider value={data}><div><Main alert={alert} showAlert={showAlert}   /></div></ThemeContext.Provider>
     }
 
-    return (
-        <ThemeContext.Provider value={data}>
+    return ( // kullanıcı giriş sayfası için html içeriğini return ettik. contexti tüm componentler üzerine sarmaladık.
+        <ThemeContext.Provider value={data}>  
         <section className={`container2 ${mode} border lead`}>
             <DarkMode />
             <div className='row'>
